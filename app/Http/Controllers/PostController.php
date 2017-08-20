@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index(){
-        $posts = [
-            [
-                'title' => 'this is title1'
-            ],
-            [
-                'title' => 'this is title2'
-            ],
-            [
-                'title' => 'this is title3'
-            ],
-            [
-                'title' => 'this is title4'
-            ]
-        ];
+        $posts = Post::orderBy('created_at','desc')->paginate(6);
         return view("post/index",compact("posts"));
     }
 
     //列表
-    public function show(){
-        return view("post/show",['title'=>'this is title','isShow'=>false]);
+    public function show(Post $post){
+        return view("post/show",compact('post'));
     }
 
     //创建页面
