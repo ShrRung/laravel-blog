@@ -24,21 +24,45 @@ class PostController extends Controller
 
     //创建逻辑
     public function store(){
-        return view("post/store");
+//        dd(request());
+//        dd(\Request::all());
+        $this->validate(request(),[
+            'title' => 'required|string|max:100|min:5',
+            'content' => 'required|string|min:10'
+        ]);
+
+        $post = Post::create(request(['title','content']));
+        return redirect('/posts');
     }
 
     //编辑页面
-    public function edit(){
-        return view("post/edit");
+    public function edit(Post $post){
+        return view('post/edit', compact('post'));
     }
 
     //编辑逻辑
-    public function update(){
-        return view("post/update");
+    public function update(Post $post){
+        $this->validate(request(),[
+            'title' => 'required|string|max:100|min:5',
+            'content' => 'required|string|min:10'
+        ]);
+//        $post->title = request("title");
+//        $post->content = request("content");
+//        $post->save();
+        $post->update(request(['title','content']));
+        return redirect("posts/{$post->id}");
     }
 
     //删除逻辑
-    public function delete(){
-        return view("post/delete");
+    public function delete(Post $post){
+        //TODO:用户权限认证
+        $post->delete();
+        return redirect('/posts');
+    }
+
+    //图片上传方法
+    public function imageUpload(Request $request){
+        $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
+        return asset('storage/'. $path);
     }
 }

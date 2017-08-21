@@ -16,7 +16,7 @@
 
             <p class="blog-post-meta">May 14, 2017 by <a href="#">Kassandra Ankunding2</a></p>
 
-            <p>{{ $post->content }}</p>
+            {!! $post->content !!}
             <div>
                 <a href="/posts/{{ $post->id }}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
 
