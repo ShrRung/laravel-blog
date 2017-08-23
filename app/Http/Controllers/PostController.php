@@ -24,14 +24,15 @@ class PostController extends Controller
 
     //创建逻辑
     public function store(){
-//        dd(request());
-//        dd(\Request::all());
         $this->validate(request(),[
             'title' => 'required|string|max:100|min:5',
             'content' => 'required|string|min:10'
         ]);
 
-        $post = Post::create(request(['title','content']));
+        $user_id = \Auth::id();
+        $params = array_merge(request('title','content'),compact('user_id'));
+
+        $post = Post::create($params);
         return redirect('/posts');
     }
 
@@ -46,6 +47,8 @@ class PostController extends Controller
             'title' => 'required|string|max:100|min:5',
             'content' => 'required|string|min:10'
         ]);
+
+        $this->authorize('update',$post);
 //        $post->title = request("title");
 //        $post->content = request("content");
 //        $post->save();
@@ -55,7 +58,8 @@ class PostController extends Controller
 
     //删除逻辑
     public function delete(Post $post){
-        //TODO:用户权限认证
+        //用户权限认证
+        $this->authorize('delete',$post);
         $post->delete();
         return redirect('/posts');
     }
