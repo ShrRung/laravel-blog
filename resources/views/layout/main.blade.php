@@ -8,7 +8,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="csrf-token" content="MESUY3topeHgvFqsy9EcM916UWQq6khiGHM91wHy">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <title>laravel for blog</title>
@@ -20,8 +20,6 @@
     <!-- Custom styles for this template -->
     <link href="/css/blog.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/wangEditor.min.css">
-
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -56,7 +54,7 @@
             <li class="dropdown">
                 <div>
                     <img src="/storage/9f0b0809fd136c389c20f949baae3957/iBkvipBCiX6cHitZSdTaXydpen5PBiul7yYCc88O.jpeg" alt="" class="img-rounded" style="border-radius:500px; height: 30px">
-                    <a href="#" class="blog-nav-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kassandra Ankunding2  <span class="caret"></span></a>
+                    <a href="#" class="blog-nav-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/user/5">我的主页</a></li>
                         <li><a href="/user/5/setting">个人设置</a></li>

@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', "\App\Http\Controllers\LoginController@index")->name('login');
+Route::post('/login', "\App\Http\Controllers\LoginController@login");
+Route::get('/logout', "\App\Http\Controllers\LoginController@logout");
+
+Route::get('/register', "\App\Http\Controllers\RegisterController@index");
+Route::post('/register', "\App\Http\Controllers\RegisterController@register");
+
+
 // 文章：列表、详情、创建文章、编辑文章
 Route::get('/posts', '\App\Http\Controllers\PostController@index');
 Route::get('/posts/create', '\App\Http\Controllers\PostController@create');
@@ -23,9 +31,27 @@ Route::get('/posts/search', '\App\Http\Controllers\PostController@search');
 Route::get('/posts/{post}', '\App\Http\Controllers\PostController@show');
 Route::get('/posts/{post}/edit', '\App\Http\Controllers\PostController@edit');
 Route::put('/posts/{post}', '\App\Http\Controllers\PostController@update');
+Route::get('/posts/{post}/delete','\App\Controllers\PostController@delete');
 Route::post('/posts/img/upload', '\App\Http\Controllers\PostController@imageUpload');
-Route::post('/posts/comment', '\App\Http\Controllers\PostController@comment');
+Route::post('/posts/{post}/comment', '\App\Http\Controllers\PostController@comment');
 Route::get('/posts/{post}/zan', '\App\Http\Controllers\PostController@zan');
 Route::get('/posts/{post}/unzan', '\App\Http\Controllers\PostController@unzan');
+
+
+// 个人主页
+Route::get('/user/{user}', '\App\Http\Controllers\UserController@show');
+Route::post('/user/{user}/fan', '\App\Http\Controllers\UserController@fan');
+Route::post('/user/{user}/unfan', '\App\Http\Controllers\UserController@unfan');
+
+// 个人设置
+Route::get('/user/me/setting', '\App\Http\Controllers\UserController@setting');
+Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingStore');
+
+// 专题
+Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
+Route::get('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
+
+// 通知
+Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
 
 
