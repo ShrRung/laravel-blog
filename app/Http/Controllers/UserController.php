@@ -13,4 +13,9 @@ class UserController extends Controller
     public function settingStore(){
 
     }
+
+    public function show()
+    {
+        return view('user.show');
+    }
 }
