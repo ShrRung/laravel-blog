@@ -38,7 +38,7 @@ class PostController extends Controller
         ]);
 
         $user_id = \Auth::id();
-        $params = array_merge(request('title','content'),compact('user_id'));
+        $params = array_merge(request(['title','content']),compact('user_id'));
 
         $post = Post::create($params);
         return redirect('/posts');

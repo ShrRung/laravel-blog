@@ -49,7 +49,7 @@ Route::post('/user/me/setting', '\App\Http\Controllers\UserController@settingSto
 
 // 专题
 Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
-Route::get('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
+Route::post('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 
 // 通知
 Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
