@@ -54,4 +54,4 @@ Route::post('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@subm
 // 通知
 Route::get('/notices', '\App\Http\Controllers\NoticeController@index');
 
-
+include_once('admin.php');
