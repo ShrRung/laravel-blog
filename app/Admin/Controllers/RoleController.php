@@ -41,7 +41,7 @@ class  RoleController extends Controller
         //获取当前用户的权限
         $myPermissions = $role->permission;
 
-        return view('admin.role.permission',compact('permissions','myPermissions'));
+        return view('admin.role.permission',compact('permissions','myPermissions','role'));
     }
 
     public function storePermission(AdminRole $role)

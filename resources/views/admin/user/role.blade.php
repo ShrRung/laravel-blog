@@ -18,7 +18,11 @@
                                 @foreach($roles as $role)
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="roles[]" @if($myRoles->contains($role))checked@endif value="{{$role->id}}">
+                                            <input type="checkbox" name="roles[]"
+                                                   @if($myRoles->contains($role))
+                                                        checked
+                                                   @endif
+                                                   value="{{$role->id}}">
                                             {{$role->name}}
                                         </label>
                                     </div>
