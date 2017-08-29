@@ -180,6 +180,12 @@ return [
          * Laravel Helper Providers...
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        /*
+         * composer package providers
+         */
+        Laravel\Scout\ScoutServiceProvider::class,
+        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+
     ],
 
     /*
