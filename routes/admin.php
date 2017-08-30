@@ -10,7 +10,7 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/home', '\App\Admin\Controllers\HomeController@index');
 
         // 系统管理
-//        Route::group(['middleware' => 'can:system'], function(){
+        Route::group(['middleware' => 'can:system'], function(){
             // 用户管理
             Route::get('/users', '\App\Admin\Controllers\UserController@index');
             Route::get('/users/create', '\App\Admin\Controllers\UserController@create');
@@ -29,14 +29,14 @@ Route::group(['prefix'=>'admin'],function (){
             Route::get('/permissions', '\App\Admin\Controllers\PermissionController@index');
             Route::get('/permissions/create', '\App\Admin\Controllers\PermissionController@create');
             Route::post('/permissions/store', '\App\Admin\Controllers\PermissionController@store');
-//        });
+        });
 
         // 文章管理
-//        Route::group(['middleware' => 'can:post'], function() {
+        Route::group(['middleware' => 'can:post'], function() {
             // 文章管理
             Route::get('/posts', '\App\Admin\Controllers\PostController@index');
             Route::post('/posts/{post}/status', '\App\Admin\Controllers\PostController@status');
-//        });
+        });
 
         // 专题模块
         Route::group(['middleware' => 'can:topic'], function(){
