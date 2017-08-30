@@ -4,9 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use App\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
+    //新增一个特性
+    use Searchable;
+    //定义索引里面的type
+    public function searchableAs()
+    {
+        return 'post';
+    }
+
+    //定义需要搜索的字段
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content
+        ];
+    }
+
     //关联用户
     public function user()
     {
